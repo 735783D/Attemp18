@@ -5,22 +5,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.attemp18.MainMenuController">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
          <children>
-            <Button maxWidth="65.0" mnemonicParsing="false" text="CREATE">
+            <Button maxWidth="65.0" mnemonicParsing="false" onAction="#onActionCreateAnimal" text="CREATE">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button layoutX="144.0" layoutY="97.0" maxWidth="65.0" mnemonicParsing="false" text="DISPLAY">
+            <Button layoutX="144.0" layoutY="97.0" maxWidth="65.0" mnemonicParsing="false" onAction="#onActionDisplayAnimals" text="DISPLAY">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button layoutX="144.0" layoutY="110.0" maxWidth="65.0" mnemonicParsing="false" text="EXIT">
+            <Button layoutX="144.0" layoutY="110.0" maxWidth="65.0" mnemonicParsing="false" onAction="#onActionExit" text="EXIT">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
