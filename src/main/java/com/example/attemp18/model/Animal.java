@@ -1,6 +1,6 @@
-package model;
+package com.example.attemp18.model;
 
-public class Animal {
+public abstract class Animal {
     private int id;
     private String breed;
     private int lifespan;
@@ -21,44 +21,44 @@ public class Animal {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getBreed() {
         return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
     }
 
     public int getLifespan() {
         return lifespan;
     }
 
-    public void setLifespan(int lifespan) {
-        this.lifespan = lifespan;
-    }
-
     public String getBehavior() {
         return behavior;
-    }
-
-    public void setBehavior(String behavior) {
-        this.behavior = behavior;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public boolean isVaccinated() {
         return vaccinated;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public void setLifespan(int lifespan) {
+        this.lifespan = lifespan;
+    }
+
+    public void setBehavior(String behavior) {
+        this.behavior = behavior;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public void setVaccinated(boolean vaccinated) {

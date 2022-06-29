@@ -1,17 +1,18 @@
-package model;
+package com.example.attemp18.model;
 
-import javafx.beans.Observable;
+import com.example.attemp18.model.Animal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class DataProvider {
     private static ObservableList<Animal> allAnimals = FXCollections.observableArrayList();
 
-    public static  void addAnimal(Animal animal){
+    public static void addAnimal(Animal animal){
         allAnimals.add(animal);
     }
 
     public static ObservableList<Animal> getAllAnimals(){
         return allAnimals;
     }
+
 }
