@@ -2,6 +2,7 @@ package com.example.attemp18;
 
 import com.example.attemp18.model.Animal;
 import com.example.attemp18.model.DataProvider;
+import com.example.attemp18.model.Dog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,6 +66,28 @@ public class DisplayAnimalsMenuController implements Initializable {
         return false;
     }
 
+    public boolean update(int id, Animal animal){
+        int index = -1;
+
+        for(Animal dog : DataProvider.getAllAnimals()){
+            index++;
+
+            if(dog.getId() == id){
+                DataProvider.getAllAnimals().set(index,animal);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean delete(int id) {
+        for(Animal dog : DataProvider.getAllAnimals()){
+            if(dog.getId() == id)
+                return DataProvider.getAllAnimals().remove(dog);
+        }
+        return false;
+    }
+
     @Override           //This is like the 'main' function for a controller and is necessary
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -83,12 +106,25 @@ public class DisplayAnimalsMenuController implements Initializable {
         //Populates the first cell in the price column of the tableview
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
+        /*
         if(search(44))
             System.out.println("Found!");
         else
             System.out.println("Not Found!");
+        */
 
+        /*
+        if(update(55,new Dog(5, "Rutty", 15, "Lax", 4999.92, true, "Bringer")))
+            System.out.println("Update Successful!");
+        else
+            System.out.println("Something Broke!");
+        */
 
+        if(delete(3))
+            System.out.println("Deleted!");
+        else
+            System.out.println("Still There!");
 
     }
+
 }
