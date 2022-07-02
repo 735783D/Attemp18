@@ -48,7 +48,7 @@
                            <toggleGroup>
                               <ToggleGroup fx:id="vaccTG" />
                            </toggleGroup></RadioButton>
-                        <RadioButton fx:id="vacNoBtn" mnemonicParsing="false" text="No" toggleGroup="$vaccTG" />
+                        <RadioButton fx:id="vaccNoBtn" mnemonicParsing="false" text="No" toggleGroup="$vaccTG" />
                      </children>
                   </HBox>
                </children>
@@ -61,8 +61,8 @@
             </GridPane>
             <HBox alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="360.0" spacing="30.0">
                <children>
-                  <Button mnemonicParsing="false" text="Save" />
-                  <Button mnemonicParsing="false" onAction="#onActionBackMainMenu" text="Back" />
+                  <Button fx:id="btn_save" mnemonicParsing="false" onAction="#onActionSaveAnimal" text="Save" />
+                  <Button fx:id="btn_back" mnemonicParsing="false" onAction="#onActionBackMainMenu" text="Back" />
                </children>
                <padding>
                   <Insets right="30.0" />

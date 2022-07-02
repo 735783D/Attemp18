@@ -1,5 +1,7 @@
 package com.example.attemp18;
 
+import com.example.attemp18.model.DataProvider;
+import com.example.attemp18.model.Dog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +46,7 @@ public class CreateAnimalMenuController implements Initializable {
     private TextField priceTxt;
 
     @FXML
-    private RadioButton vacNoBtn;
+    private RadioButton vaccNoBtn;
 
     @FXML
     private RadioButton vaccYesBtn;
@@ -62,5 +64,29 @@ public class CreateAnimalMenuController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
         System.out.println("Display Button Clicked");
+    }
+
+    @FXML
+    void onActionSaveAnimal(ActionEvent event) throws IOException {
+        int id = Integer.parseInt(animalIdTxt.getText());
+        String breed = breedTxt.getText();
+        int lifespan = Integer.parseInt(lifespanTxt.getText());
+        String behavior = behaviorTxt.getText();
+        double price = Double.parseDouble(priceTxt.getText());
+        boolean isVaccinated;
+        String special = null;
+
+        if(vaccYesBtn.isSelected())
+            isVaccinated = true;
+        else
+            isVaccinated = false;
+
+        DataProvider.addAnimal(new Dog(id, breed, lifespan, behavior, price, isVaccinated, special));
+
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/MainMenu.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
     }
 }

@@ -57,6 +57,13 @@ public class DisplayAnimalsMenuController implements Initializable {
     private TableColumn<Animal, Double> priceCol;
 
 
+    public boolean search(int id){
+        for(Animal dog : DataProvider.getAllAnimals()){
+            if(dog.getId() == id)
+                return true;
+        }
+        return false;
+    }
 
     @Override           //This is like the 'main' function for a controller and is necessary
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,5 +82,13 @@ public class DisplayAnimalsMenuController implements Initializable {
 
         //Populates the first cell in the price column of the tableview
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        if(search(44))
+            System.out.println("Found!");
+        else
+            System.out.println("Not Found!");
+
+
+
     }
 }
