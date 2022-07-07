@@ -3,6 +3,7 @@ package com.example.attemp18;
 import com.example.attemp18.model.Animal;
 import com.example.attemp18.model.DataProvider;
 import com.example.attemp18.model.Dog;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -88,11 +89,37 @@ public class DisplayAnimalsMenuController implements Initializable {
         return false;
     }
 
+    public Animal selectAnimal(int id){
+        for(Animal dog : DataProvider.getAllAnimals()){
+            if(dog.getId() == id)
+                return dog;
+        }
+        return null;
+    }
+
+
+    public ObservableList<Animal> filter(String breed){
+        if(!(DataProvider.getAllFilteredAnimals().isEmpty()))
+            DataProvider.getAllFilteredAnimals().clear();
+
+        for (Animal dog : DataProvider.getAllAnimals()){
+            if(dog.getBreed().contains(breed)){
+                DataProvider.getAllFilteredAnimals().add(dog);
+            }
+        }
+        if(DataProvider.getAllFilteredAnimals().isEmpty())
+            return DataProvider.getAllAnimals();
+        else
+            return DataProvider.getAllFilteredAnimals();
+    }
+
     @Override           //This is like the 'main' function for a controller and is necessary
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Tells the controller what the table where the tableview gets its info
-        animalTableView.setItems(DataProvider.getAllAnimals());
+        //animalTableView.setItems(DataProvider.getAllAnimals());
+        animalTableView.setItems(filter("X"));
+
 
         //Populates the first cell in the id column of the tableview
         animalIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -105,6 +132,8 @@ public class DisplayAnimalsMenuController implements Initializable {
 
         //Populates the first cell in the price column of the tableview
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+
 
         /*
         if(search(44))
@@ -120,11 +149,18 @@ public class DisplayAnimalsMenuController implements Initializable {
             System.out.println("Something Broke!");
         */
 
+        /*
         if(delete(3))
             System.out.println("Deleted!");
         else
             System.out.println("Still There!");
+        */
+
+        //animalTableView.getSelectionModel().select(selectAnimal(5));
+
 
     }
 
 }
+
+
