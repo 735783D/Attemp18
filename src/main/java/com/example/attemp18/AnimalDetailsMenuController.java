@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,9 +45,12 @@ public class AnimalDetailsMenuController implements Initializable {
 
     public void sendAnimal(Animal dog){
         animalIdLbl.setText(String.valueOf(dog.getId()));
+        behaviorLbl.setText(dog.getBehavior());
         breedLbl.setText(dog.getBreed());
         lifespanLbl.setText(String.valueOf(dog.getLifespan()));
         priceLbl.setText(String.valueOf(dog.getPrice()));
+
+
     }
 
     @Override
@@ -57,7 +61,7 @@ public class AnimalDetailsMenuController implements Initializable {
     public void onActionDisplayAnimals(ActionEvent event) throws IOException {
 
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/MainMenu.fxml"));
+        scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/DisplayAnimalsMenu.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }

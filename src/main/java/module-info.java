@@ -1,6 +1,7 @@
 module com.example.attemp18 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.jetbrains.annotations;
 
 
     opens com.example.attemp18 to javafx.fxml;
