@@ -57,14 +57,7 @@ public class CreateAnimalMenuController implements Initializable {
     }
 
 
-    @FXML
-    void onActionDisplayAnimals (ActionEvent event) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/DisplayAnimalsMenu.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
-        System.out.println("Display Button Clicked");
-    }
+
 
     @FXML
     void onActionSaveAnimal(ActionEvent event) throws IOException {
