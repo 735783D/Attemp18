@@ -1,6 +1,7 @@
 package com.example.attemp18;
 
 import com.example.attemp18.model.Animal;
+import com.example.attemp18.model.Dog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,6 +50,16 @@ public class AnimalDetailsMenuController implements Initializable {
         breedLbl.setText(dog.getBreed());
         lifespanLbl.setText(String.valueOf(dog.getLifespan()));
         priceLbl.setText(String.valueOf(dog.getPrice()));
+
+        //Checks the boolean and prints what you want it to be equal to
+        if(dog.isVaccinated())
+            vaccLbl.setText("Yes");
+        else
+            vaccLbl.setText("No");
+
+        //Castes a superclass method to a subclass just for a bit
+        if(dog instanceof Dog)
+            specialLbl.setText(((Dog) dog).getSpecial());
 
 
     }
