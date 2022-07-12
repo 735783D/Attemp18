@@ -61,25 +61,35 @@ public class CreateAnimalMenuController implements Initializable {
 
     @FXML
     void onActionSaveAnimal(ActionEvent event) throws IOException {
-        int id = Integer.parseInt(animalIdTxt.getText());
-        String breed = breedTxt.getText();
-        int lifespan = Integer.parseInt(lifespanTxt.getText());
-        String behavior = behaviorTxt.getText();
-        double price = Double.parseDouble(priceTxt.getText());
-        boolean isVaccinated;
-        String special = null;
+        try{
+            int id = Integer.parseInt(animalIdTxt.getText());
+            String breed = breedTxt.getText();
+            int lifespan = Integer.parseInt(lifespanTxt.getText());
+            String behavior = behaviorTxt.getText();
+            double price = Double.parseDouble(priceTxt.getText());
+            boolean isVaccinated;
+            String special = null;
 
-        if(vaccYesBtn.isSelected())
-            isVaccinated = true;
-        else
-            isVaccinated = false;
+            if(vaccYesBtn.isSelected())
+                isVaccinated = true;
+            else
+                isVaccinated = false;
 
-        DataProvider.addAnimal(new Dog(id, breed, lifespan, behavior, price, isVaccinated, special));
+            DataProvider.addAnimal(new Dog(id, breed, lifespan, behavior, price, isVaccinated, special));
 
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/MainMenu.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+            stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/MainMenu.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+            }
+        catch (NumberFormatException e){
+            System.out.println("Please enter valid values in text fields");
+            System.out.println("Exception:" + e);
+            System.out.println("Exception:" + e.getMessage());
+
+        }
+
+
 
     }
 }
