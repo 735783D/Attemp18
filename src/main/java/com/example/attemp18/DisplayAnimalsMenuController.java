@@ -16,7 +16,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,25 +23,6 @@ import java.util.ResourceBundle;
 public class DisplayAnimalsMenuController implements Initializable {
     Stage stage;
     Parent scene;
-
-    @FXML
-    void onActionBackToMainMenu(ActionEvent event) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/MainMenu.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
-
-    }
-
-    @FXML
-    void onActionToDetailsMenu(ActionEvent event) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/AnimalDetailsMenu.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
-    }
-
-
     @FXML
     private TableColumn<Animal, Integer> animalIdCol;
 
@@ -57,6 +37,33 @@ public class DisplayAnimalsMenuController implements Initializable {
 
     @FXML
     private TableColumn<Animal, Double> priceCol;
+
+    @FXML
+    void onActionBackToMainMenu(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/MainMenu.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
+    }
+
+    @FXML
+    void onActionToDetailsMenu(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/example/attemp18/AnimalDetailsMenu.fxml"));
+        loader.load();
+
+        AnimalDetailsMenuController ADMController = loader.getController();
+        ADMController.sendAnimal(animalTableView.getSelectionModel().getSelectedItem());
+
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        Parent scene = loader.getRoot();
+        stage.setScene(new Scene(scene));
+        stage.show();
+        //stage.showAndWait() when you are using multiple windows
+
+    }
 
 
     public boolean search(int id){
@@ -117,8 +124,8 @@ public class DisplayAnimalsMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Tells the controller what the table where the tableview gets its info
-        //animalTableView.setItems(DataProvider.getAllAnimals());
-        animalTableView.setItems(filter("X"));
+        animalTableView.setItems(DataProvider.getAllAnimals());
+        //animalTableView.setItems(filter("X"));
 
 
         //Populates the first cell in the id column of the tableview
