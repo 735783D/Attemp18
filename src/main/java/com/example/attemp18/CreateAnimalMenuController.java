@@ -8,14 +8,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.ClosedWatchServiceException;
 import java.util.EventObject;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CreateAnimalMenuController implements Initializable {
@@ -23,11 +23,19 @@ public class CreateAnimalMenuController implements Initializable {
     Parent scene;
     @FXML
     void onActionBackMainMenu(ActionEvent event) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/MainMenu.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"This will clear all text field values, do you want to continue?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK){
+
+
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/com/example/attemp18/MainMenu.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
     }
 
     @FXML
@@ -83,9 +91,16 @@ public class CreateAnimalMenuController implements Initializable {
             stage.show();
             }
         catch (NumberFormatException e){
-            System.out.println("Please enter valid values in text fields");
-            System.out.println("Exception:" + e);
-            System.out.println("Exception:" + e.getMessage());
+            //This block shows the error definitions in the terminal for the devs
+//            System.out.println("Please enter valid values in text fields");
+//            System.out.println("Exception:" + e);
+//            System.out.println("Exception:" + e.getMessage());
+
+            //This block is specifically for the users when they do a bad
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning Dialog");
+                alert.setContentText("Please use valid value for each Test field!");
+                alert.showAndWait();
 
         }
 
